@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+    <table border="1" cellpadding="5" cellspacing="3">
+        <tr>
+            <th>Nome</th>
+            <th>Curso</th>
+            <th>Gênero</th>
+            <th>Escolaridade</th>
+            <th>Estado Civil</th>
+        </tr>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.curso }}</td>
+            <td>{{ aluno.get_genero_display }}</td>
+            <td>{{ aluno.get_escolaridade_display }}</td>
+            <td>{{ aluno.get_estado_civil_display }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
