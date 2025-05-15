@@ -8,8 +8,13 @@
 <body>
     <h1>Index de Acadêmico</h1>
 
-    <p><a href=" {% url 'cadastrar_aluno' %}">Cadastro de Aluno</a></p> 
-    <p><a href=" {% url 'cadastrar_curso' %}">Cadastro de Curso</a></p> 
-    <p><a href=" {% url 'alunos' %}">Lista de Alunos</a></p> 
-</body>
+    <ul>
+        <p>Escolha uma opção:</p>
+        <li><a href=" {% url 'cadastrar_aluno' %}">Cadastro de Aluno</a></li>
+        <li><a href=" {% url 'cadastrar_curso' %}">Cadastro de Curso</a></li>
+        <li><a href=" {% url 'alunos' %}">Lista de Alunos</a></li>
+        <li><a href=" {% url 'contato' %}">Contato</a></li>
+    </ul>
+
+    </body>
 </html>

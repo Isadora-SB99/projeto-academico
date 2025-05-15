@@ -14,6 +14,8 @@
             <th>Gênero</th>
             <th>Escolaridade</th>
             <th>Estado Civil</th>
+            <th>Nascimento</th>
+            <th>Editar</th>
         </tr>
         {% for aluno in alunos %}
         <tr>
@@ -22,9 +24,14 @@
             <td>{{ aluno.get_genero_display }}</td>
             <td>{{ aluno.get_escolaridade_display }}</td>
             <td>{{ aluno.get_estado_civil_display }}</td>
+            <td>{{ aluno.data_nascimento|date:"d/m/Y" }}</td>
+            <td><a href="{% url 'editar_aluno' aluno.id %}">Editar</a></td>
 
         </tr>
         {% endfor %}
     </table>
+
+    <p><a href=" {% url 'cadastrar_aluno' %}">Cadastro de Aluno</a></p> 
+    <p><a href=" {% url 'index' %}">Página inicial</a></p> 
 </body>
 </html>

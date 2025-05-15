@@ -9,7 +9,10 @@ class CursoForm(forms.ModelForm):
 
 #Formulário para Aluno
 class AlunoForm(forms.ModelForm):
-    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    data_nascimento = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+        input_formats=['%Y-%m-%d']
+    )
 
     class Meta:
         model = Aluno #Aqui vamos dizer qual modelo esse formulário vai usar
