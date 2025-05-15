@@ -14,6 +14,13 @@ def alunos(request):
     }
     return render(request, 'academico/lista_alunos.html', dados)
 
+def cursos(request):
+    cursos = Curso.objects.all()
+    dados = {
+        'cursos': cursos,
+    }
+    return render(request, 'academico/lista_cursos.html', dados)
+
 def cadastrar_aluno(request):
     
     if request.method == 'POST':
@@ -66,4 +73,29 @@ def editar_aluno(request, id):
     }
 
     return render(request, 'academico/editar_aluno.html', dados)
+
+def editar_curso(request, id):
+    #aluno vai receber os dados do aluno selecionado.
+    try:
+        curso = Curso.objects.get(id=id)
+    except:
+        return redirect('cursos')
+    
+    if request.method == 'POST':
+        form = CursoForm(request.POST, instance=curso)
+        if form.is_valid():
+            form.save()
+            return redirect('cursos')
+    
+    
+    #form vai receber um formulário com os dados do Curso selecionado.
+    form = CursoForm(instance=curso)
+    
+    #Montamos o dicionário com os dados para ser passado para o template.
+    dados = {
+        'form': form,
+        'curso': curso,
+    }
+
+    return render(request, 'academico/editar_curso.html', dados)
 
