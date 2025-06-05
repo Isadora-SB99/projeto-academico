@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Aluno</title>
-</head>
-<body>
-    
+{% extends 'academico/base.html' %}
+
+{% block content %}
+
+
     <h1>Cadastro de Aluno</h1>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        
+
         <button type="submit">Cadastrar Aluno</button>
     </form>
 
-    <p><a href=" {% url 'index' %}">Página inicial</a></p>
 
-</body>
-</html>
+    {% endblock %}

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index de Acadêmico</title>
-</head>
-<body>
+{% extends 'academico/base.html' %}
+
+{% block content %}
+
     <h1>Index de Acadêmico</h1>
 
     <ul>
@@ -17,5 +13,5 @@
         <li><a href=" {% url 'contato' %}">Contato</a></li>
     </ul>
 
-    </body>
-</html>
+
+    {% endblock %}

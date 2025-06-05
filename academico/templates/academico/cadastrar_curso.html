@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Curso</title>
-</head>
-<body>
-    
+{% extends 'academico/base.html' %}
+
+{% block content %}
+
+
     <h1>Cadastrar Curso</h1>
 
     <form method="post">
@@ -17,7 +13,5 @@
 
     </form>
 
-    <p><a href=" {% url 'index' %}">Página inicial</a></p>
 
-</body>
-</html>
+    {% endblock %}
