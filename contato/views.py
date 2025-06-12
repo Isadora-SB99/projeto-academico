@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import forms
 from django.core.mail import send_mail
+from django.contrib import messages
 
 
 def contato(request):
@@ -20,15 +21,13 @@ def contato(request):
                 corpo_email,
                 email,  # remetente
                 ['isadorabellaguarda@sou.faccat.br'],  # destinatário
+                messages.success(request, "Mensagem enviada com sucesso")
             )
 
             form = forms.ContatoForm()
             dados = {
                 'form': form,
-                'mensagem_enviada': True,
-                'mensagem': 'Mensagem enviada com sucesso!',
             }
-
     else:
         # Se o método não for POST, cria um novo formulário vazio
         form = forms.ContatoForm()

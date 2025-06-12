@@ -1,23 +1,26 @@
 {% extends 'academico/base.html' %}
 
 {% block content %}
+    <div class="container my-3">
+        <h1 class="bg-secondary text-white shadow rounded py-2 px-2">Lista de cursos</h1>
+    </div>
 
+    <div class="container my-3">
+        <table class="table table-danger table-hover shadow">
+            <tr class="table-light border">
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
 
-    <table border="1" cellpadding="5" cellspacing="3">
-        <tr>
-            <th>Nome</th>
-            <th>Editar</th>
-            <th>Excluir</th>
-        </tr>
+            {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.nome }}</td>
+                    <td><a href="{% url 'editar_curso' curso.id %}">Editar</a></td>
+                    <td><a href="{% url 'excluir_curso' curso.id %}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
-        {% for curso in cursos %}
-        <tr>
-            <td>{{ curso.nome }}</td>
-            <td><a href="{% url 'editar_curso' curso.id %}">Editar</a></td>
-            <td><a href="{% url 'excluir_curso' curso.id %}">Excluir</a></td>
-
-        </tr>
-        {% endfor %}
-    </table>
-
-    {% endblock %}
+{% endblock %}

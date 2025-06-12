@@ -1,15 +1,18 @@
 {% extends 'academico/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-    <h1>Edição de Curso</h1>
+<div class="container my-3">
+    <h1 class="bg-secondary text-white shadow rounded py-2 px-2">Edição de Curso</h1>
+</div>
 
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
 
-        <button type="submit">Salvar Alterações</button>
-        <p><a href="{% url 'cursos' %}"> Voltar</a></p>
+        <button class="btn btn-secondary text-white" type="submit">Salvar Alterações</button>
+        <button><a class="link-dark link-underline-opacity-0" href="{% url 'cursos' %}"> Voltar</a></button>
     </form>
 
 

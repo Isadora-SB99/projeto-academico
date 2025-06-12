@@ -1,17 +1,18 @@
 {% extends 'academico/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-
-    <h1>Cadastrar Curso</h1>
+    <div class="container my-3">
+        <h1 class="bg-secondary text-white shadow rounded py-2 px-2">Cadastro de Curso</h1>
+    </div>
 
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
 
-        <button type="submit">Cadastrar Curso</button>
+        <button class="btn btn-secondary text-white" type="submit">Cadastrar Curso</button>
 
     </form>
 
-
-    {% endblock %}
+{% endblock %}

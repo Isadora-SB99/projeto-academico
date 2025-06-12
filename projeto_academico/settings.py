@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_bootstrap5',
+    'crispy_forms',
     'contato.apps.ContatoConfig',
     'academico.apps.AcademicoConfig',
     'django.contrib.admin',
@@ -131,3 +133,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'isadorabellaguarda@sou.faccat.br'
 EMAIL_HOST_PASSWORD = 'qscn mlsg pexf pkig'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -11,54 +11,9 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Página inicial</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'contato' %}">Contato</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Alunos
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'cadastrar_aluno' %}">Cadastrar aluno</a></li>
-              <li><a class="dropdown-item" href="{% url 'alunos' %}">Alunos ativos</a></li>
-              <li><a class="dropdown-item" href="{% url 'alunos_inativos' %}">Alunos inativos</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Cursos
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'cadastrar_curso' %}">Cadastrar curso</a></li>
-              <li><a class="dropdown-item" href="{% url 'cursos' %}">Lista de cursos</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  {% include 'academico/partials/_menu.html' %}
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>
-      {{ message }}
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+  {% include 'academico/partials/_messages.html' %}
 
   {% block content %}
 
