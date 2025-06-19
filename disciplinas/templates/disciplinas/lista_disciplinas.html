@@ -1,0 +1,32 @@
+{% extends 'academico/base.html' %}
+
+{% block content %}
+<div class="container my-3">
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <div class="bg-secondary rounded shadow py-2">
+                <h2 class="text-center text-white">Lista de Disciplinas</h2>
+            </div>
+
+            <table class="table table-bordered table-striped mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Curso</th>
+                        <th>Vagas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for disciplina in disciplinas %}
+                        <tr>
+                            <td>{{ disciplina.nome }}</td>
+                            <td>{{ disciplina.curso.nome }}</td>
+                            <td>{{ disciplina.vagas }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'academico/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="bg-primary text-white rounded shadow py-2 text-center">Selecionar Aluno para Matrícula</h2>
+
+  {% include 'academico/partials/_busca.html' %}
+
+  <div class="row">
+    {% for aluno in alunos %}
+      <div class="col-md-4">
+        <div class="card mb-3 shadow-sm">
+          <div class="card-body">
+            {% if aluno.ja_matriculado %}
+                <span class="badge bg-success mt-1 mb-3">Matriculado</span>
+            {% endif %}
+            <h5 class="card-title">{{ aluno.nome }}</h5>
+            <p class="card-text">Curso: {{ aluno.curso.nome }}</p>
+            <a href="{% url 'matricular_aluno' aluno.id %}" class="btn btn-primary btn-sm">Selecionar</a>
+            
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>Nenhum aluno encontrado.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

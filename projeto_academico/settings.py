@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'disciplinas.apps.DisciplinasConfig',
     'crispy_bootstrap5',
     'crispy_forms',
     'contato.apps.ContatoConfig',
