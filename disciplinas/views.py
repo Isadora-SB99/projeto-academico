@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from .forms import DisciplinaForm
 from django.contrib import messages
 from .models import Disciplina, Aluno, Matricula
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def cadastrar_disciplina(request):
     if request.method == 'POST':
         form = DisciplinaForm(request.POST)
@@ -17,6 +19,7 @@ def cadastrar_disciplina(request):
         }
     return render(request, 'disciplinas/cadastrar_disciplina.html', dados)
 
+@login_required
 def listar_disciplinas(request):
     disciplinas = Disciplina.objects.all()
     dados = {
@@ -24,6 +27,7 @@ def listar_disciplinas(request):
     }
     return render(request, 'disciplinas/lista_disciplinas.html', dados)
 
+@login_required
 def listar_alunos_para_matricula(request):
     busca = request.GET.get('busca', '')
     if busca:
@@ -41,7 +45,7 @@ def listar_alunos_para_matricula(request):
     }
     return render(request, 'disciplinas/lista_alunos_matricula.html', dados)
 
-
+@login_required
 def matricular_aluno(request, aluno_id):
     try:
         aluno = Aluno.objects.get(id=aluno_id)
@@ -85,7 +89,7 @@ def matricular_aluno(request, aluno_id):
     return render(request, 'disciplinas/matriculas.html', dados)
 
 
-
+@login_required
 def historico_matriculas(request):
     matriculas = Matricula.objects.all().order_by('-id')
     dados = {

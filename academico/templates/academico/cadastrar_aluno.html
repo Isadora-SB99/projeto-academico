@@ -7,7 +7,7 @@
         <h1 class="bg-secondary text-white shadow rounded py-2 px-2">Cadastro de Aluno</h1>
     </div>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
 

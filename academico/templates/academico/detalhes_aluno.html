@@ -1,0 +1,29 @@
+{% extends 'academico/base.html' %}
+
+{% block content %}
+<div class="container my-3">
+    <div class="card mx-auto" style="width: 18rem;">
+        {% if aluno.foto %}
+            <img src="{{ aluno.foto.thumb.url }}" class="card-img-top" alt="Foto de {{ aluno.nome }}">
+        {% else %}
+            <img src="" class="card-img-top" alt="Sem foto {{ aluno.nome }} ">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ aluno.nome }}</h5>
+            <p class="card-text"><strong>Curso:</strong> {{ aluno.curso }}</p>
+            <p class="card-text"><strong>Gênero:</strong> {{ aluno.get_genero_display }}</p>
+            <p class="card-text"><strong>CPF:</strong> {{ aluno.cpf }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col text-center">
+            <a href="{% url 'alunos' %}" class="btn btn-primary"> Lista de Alunos</a>
+            <a href="{% url 'editar_aluno' aluno.id %}" class="btn btn-info">Editar Aluno</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

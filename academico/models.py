@@ -1,3 +1,4 @@
+from stdimage.models import StdImageField
 from django.db import models
 
 GENERO_CHOICES = [
@@ -56,6 +57,12 @@ class Aluno(models.Model):
     escolaridade = models.CharField("selecione o nível de escolaridade: ", max_length=50, choices=ESCOLARIDADE_CHOICES)
     curso = models.ForeignKey(Curso, on_delete=models.RESTRICT)
     ativo = models.BooleanField(default=True)
+    foto = StdImageField(
+        upload_to='fotos/alunos',
+        variations={'thumb': (150, 150), 'medium': (300, 300)},
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.nome

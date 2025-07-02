@@ -4,7 +4,7 @@ from .forms import CursoForm, AlunoForm
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.db.models import RestrictedError
-
+from django.contrib.auth.decorators import login_required
 
 ORDENACAO_ALUNOS_LOOKUP = {
     'curso': 'curso__nome',
@@ -15,11 +15,11 @@ ORDENACAO_ALUNOS_LOOKUP = {
     'data_nascimento': 'data_nascimento'
 }
 
-
+@login_required
 def index(request):
     return render(request, 'academico/index.html')
 
-
+@login_required
 def alunos(request):
     query = request.GET.get('busca', '')
     if query:
@@ -41,15 +41,12 @@ def cursos(request):
     }
     return render(request, 'academico/lista_cursos.html', dados)
 
-
+@login_required
 def cadastrar_aluno(request):
 
     if request.method == 'POST':
-        form = AlunoForm(request.POST)
+        form = AlunoForm(request.POST, request.FILES)
         if form.is_valid():
-            # nome = form.cleaned_data['nome'].title()
-            # form.instance.nome = nome
-
             form.save()
             return redirect('alunos')
     else:
@@ -59,7 +56,7 @@ def cadastrar_aluno(request):
         }
     return render(request, 'academico/cadastrar_aluno.html', dados)
 
-
+@login_required
 def cadastrar_curso(request):
 
     if request.method == 'POST':
@@ -74,7 +71,7 @@ def cadastrar_curso(request):
         }
     return render(request, 'academico/cadastrar_curso.html', dados)
 
-
+@login_required
 def editar_aluno(request, id):
     try:
         aluno = Aluno.objects.get(id=id)
@@ -82,7 +79,7 @@ def editar_aluno(request, id):
         return redirect('alunos')
 
     if request.method == 'POST':
-        form = AlunoForm(request.POST, instance=aluno)
+        form = AlunoForm(request.POST, request.FILES, instance=aluno)
         if form.is_valid():
             form.save()
             return redirect('alunos')
@@ -96,7 +93,7 @@ def editar_aluno(request, id):
 
     return render(request, 'academico/editar_aluno.html', dados)
 
-
+@login_required
 def editar_curso(request, id):
     try:
         curso = Curso.objects.get(id=id)
@@ -118,7 +115,7 @@ def editar_curso(request, id):
 
     return render(request, 'academico/editar_curso.html', dados)
 
-
+@login_required
 def excluir_aluno(request, id):
     try:
         aluno = Aluno.objects.get(id=id)
@@ -130,7 +127,7 @@ def excluir_aluno(request, id):
 
     return redirect('alunos')
 
-
+@login_required
 def excluir_curso(request, id):
     try:
         curso = Curso.objects.get(id=id)
@@ -144,7 +141,7 @@ def excluir_curso(request, id):
 
     return redirect('cursos')
 
-
+@login_required
 def alunos_inativos(request):
     query = request.GET.get('busca', '')
     if query:
@@ -159,7 +156,7 @@ def alunos_inativos(request):
     }
     return render(request, 'academico/lista_alunos.html', dados)
 
-
+@login_required
 def ativar_aluno(request, id):
     try:
         aluno = Aluno.objects.get(id=id)
@@ -177,7 +174,7 @@ def ativar_aluno(request, id):
 
     return redirect('alunos_inativos')
 
-
+@login_required
 def ordenar_alunos(request, campo):
     campo_ordenacao = ORDENACAO_ALUNOS_LOOKUP.get(campo)
     busca = request.GET.get('busca', '')
@@ -194,7 +191,7 @@ def ordenar_alunos(request, campo):
     }
     return render(request, 'academico/lista_alunos.html', dados)
 
-
+@login_required
 def ordenar_alunos_inativos(request, campo):
     campo_ordenacao = ORDENACAO_ALUNOS_LOOKUP.get(campo)
     busca = request.GET.get('busca', '')
@@ -210,3 +207,17 @@ def ordenar_alunos_inativos(request, campo):
         'query': busca,
     }
     return render(request, 'academico/lista_alunos.html', dados)
+
+@login_required
+def detalhes_aluno(request, aluno_id):
+    try:
+        aluno = Aluno.objects.get(id=aluno_id)
+    except Aluno.DoesNotExist:
+        messages.error(request, "Aluno não encontrado.")
+        return redirect('alunos')
+    
+    dados = {
+        'aluno': aluno,
+    }
+
+    return render(request, 'academico/detalhes_aluno.html', dados)

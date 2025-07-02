@@ -36,7 +36,7 @@
 
         {% for aluno in alunos %}
         <tr>
-            <td>{{ aluno.nome }}</td>
+            <td><a href="{% url 'detalhes_aluno' aluno.id %}">{{ aluno.nome }}</a></td>
             <td>{{ aluno.curso }}</td>
             <td>{{ aluno.get_genero_display }}</td>
             <td>{{ aluno.get_escolaridade_display }}</td>
